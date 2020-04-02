@@ -1,0 +1,29 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: we-chat
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/chat?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    username: root
+    password: 123456
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  resources: classpath:/resources/static/images
+mybatis:
+  type-aliases-package: com.chat.pojo
+  mapper-locations: classpath:mapping/*.xml
+mapper:   # mapper文件配置，有了它，可以不用写xml文件和Dao文件一一对应（可不需要写xml文件）
+  mappers: com.chat.mapper
+  not-empty: false
+  identity: MYSQL
+pagehelper:   # 分页插件配置
+  helper-dialect: mysql
+  support-methods-arguments: true
+  params: count=countSql
+logging:  # 显示sql语句
+  level:
+    com.chat.mapper: debug
