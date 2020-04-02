@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="chatnetty" options="-parameters" />
+      <module name="chat-server" options="-parameters" />
       <module name="muxinchat" options="-parameters" />
     </option>
   </component>
