@@ -63,7 +63,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             // 签收消息类型 将数据库中的消息签收状态进行更改
             String expand = dataContent.getExtend();
             String[] msgIds = expand.split(",");
-            List<String> ids = new ArrayList<>();
+            List<String> ids = new ArrayList();
             for(String id: msgIds) {
                 // 添加id非空判断
                 ids.add(id);

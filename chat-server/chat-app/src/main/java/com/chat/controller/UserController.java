@@ -9,10 +9,13 @@ import com.chat.service.UserService;
 import com.chat.utils.JSONResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.List;
 
 @RestController
@@ -71,10 +74,10 @@ public class UserController {
         return JSONResult.ok(user,"用户更新上传头像成功");
     }
     // 5.修改用户昵称
-    @RequestMapping(value = "updateNickName",method = RequestMethod.PUT)
+    @RequestMapping(value = "updateNickName",method = RequestMethod.POST)
     public JSONResult updateNickName(@RequestBody User user) {
-        userService.updateNickName(user);
-        return JSONResult.ok("","更新用户昵称成功");
+       User result =  userService.updateNickName(user);
+        return JSONResult.ok(result,"更新用户昵称成功");
     }
     // 6. 添加朋友-查询朋友列表
     @RequestMapping(value = "searchFriend",method = RequestMethod.GET)
@@ -106,6 +109,35 @@ public class UserController {
     }
 
 
+    @RequestMapping(value = "/download",method = RequestMethod.GET)
+    public void download(String userId, HttpServletResponse response) throws Exception {
+        User user = userService.getUser(userId);
+        String basePath = ClassUtils.getDefaultClassLoader().getResource("static/images/").getPath();
+        File file = new File(basePath+user.getFaceImg());
+        System.out.println(file.getName());
+
+        FileInputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(file);
+            byte[] data = new byte[(int) file.length()];
+            int length = inputStream.read(data);
+            inputStream.close();
+            // setContentType("text/plain; charset=utf-8"); 文本
+         //   response.setContentType("image/png;charset=utf-8");
+            response.setHeader("content-type", "application/octet-stream");
+         response.setContentType("application/octet-stream");
+         response.setHeader("Content-Disposition", "attachment;filename=" + file.getName());
+
+            OutputStream stream = response.getOutputStream();
+            stream.write(data);
+            stream.flush();
+            stream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

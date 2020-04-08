@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class UserChannelRel {
     // 进行声明连接管理者
-    private static HashMap<String, Channel> manager = new HashMap<>();
+    private static HashMap<String, Channel> manager = new HashMap();
     // 添加连接者
     public static  void put(String userId, Channel channel){
         manager.put(userId,channel);

@@ -13,9 +13,9 @@
 	<body>
 
 		<header class="mui-bar mui-bar-nav title">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" ></a>
 			<a id="link_submit_nickname" class="mui-icon mui-icon-right-nav mui-pull-right" 
-				style="color: white;font-size: 14px;line-height: 25px;">完成</a>
+				style="font-size: 14px;line-height: 25px;">完成</a>
 			<h1 class="mui-title title-color">设置昵称</h1>
 		</header>
 
@@ -33,6 +33,7 @@
 
 			mui.plusReady(function() {
 				var user = app.getUserGlobalInfo();
+				console.log(user)
 				var mynickname = user.nickname;
 				
 				var txt_nickname = document.getElementById("txt_nickname");
@@ -53,14 +54,14 @@
 					}
 					
 					plus.nativeUI.showWaiting("请稍微...");
-					mui.ajax(app.serverUrl + "/u/setNickname",{
+					mui.ajax(app.serverUrl + "/updateNickName",{
 						data:{
-							userId:user.id,
+							id:user.id,
 							nickname:newNickname
 						},
 						dataType:'json',//服务器返回json格式数据
 						type:'post',//HTTP请求类型
-						timeout:10000,//超时时间设置为10秒；
+						//timeout:10000,//超时时间设置为10秒；
 						headers:{'Content-Type':'application/json'},	              
 						success:function(data){
 							//服务器返回响应，根据响应结果，分析是否登录成功；

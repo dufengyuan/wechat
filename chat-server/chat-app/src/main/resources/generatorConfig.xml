@@ -53,9 +53,15 @@
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <!-- <table tableName="risk_model_order" domainObjectName="DSRiskModelOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
          <table tableName="tel_bill_record" domainObjectName="DSTelBillRecord" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-        <table tableName="user"></table>
-        <table tableName="friend_request"></table>
-        <table tableName="my_friend"></table>
-        <table tableName="chat_msg"></table>
+
+<!--        <table tableName="user"></table>-->
+<!--        <table tableName="friend_request"></table>-->
+<!--        <table tableName="my_friend"></table>-->
+<!--        <table tableName="chat_msg"></table>-->
+
+        <table tableName="role"></table>
+        <table tableName="permission"></table>
+        <table tableName="department"></table>
+
     </context>
 </generatorConfiguration>

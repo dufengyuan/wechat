@@ -122,12 +122,12 @@
 			
 		function refreshUserInfo() {
 			var user = app.getUserGlobalInfo();
-			console.log(JSON.stringify(user))
+			// console.log(user)
 			
 			if (user != null) {
-				var faceImage = user.faceImage;
+				var faceImage = user.faceImg;
 				var nickname = user.nickname;
-				var username = user.username;
+				var username = user.name;
 				
 				var span_nickname = document.getElementById("span_nickname");
 				var span_username = document.getElementById("span_username");
@@ -137,7 +137,7 @@
 				
 				if (app.isNotNull(faceImage)) {
 					var img_my_face = document.getElementById("img_my_face");
-					img_my_face.src = app.imgServerUrl + faceImage;
+					img_my_face.src = app.serverUrl +"/images/"+ faceImage;
 				}
 			}
 			

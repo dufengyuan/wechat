@@ -7,7 +7,7 @@ window.app = {
 	/**
 	 * 服务器地址
 	 */
-	serverUrl: "http://192.168.43.36:8080",
+	serverUrl: " http://a016de18.ngrok.io",
 	
 	/**
 	 * 图片服务器地址

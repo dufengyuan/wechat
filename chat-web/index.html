@@ -19,32 +19,32 @@
 			mui.init();
 			// 设置手机最顶层的状态栏样式
 			mui.plusReady(function(){
-				plus.navigator.setStatusBarStyle("light");
-				plus.navigator.setStatusBarBackground("#C9394A");
+				// plus.navigator.setStatusBarStyle("light");
+				// plus.navigator.setStatusBarBackground("#C9394A");
 			});
 		</script>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav title">
-			<h1 class="mui-title title-color"><b>慕信</b></h1>
+			<h1 class="mui-title title-color"><b>微信</b></h1>
 		</header>
 
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item mui-active" tabindex="0">
+			<a class="mui-tab-item mui-active" href="#" tabindex="0">
 				<span class="mui-icon mui-icon-weixin"></span>
-				<span class="mui-tab-lable">慕信</span>
+				<div class="mui-tab-lable">微信</div>
 			</a>
-			<a class="mui-tab-item" tabindex="1">
+			<a class="mui-tab-item" href="#" tabindex="1">
 				<span class="mui-icon mui-icon-phone"></span>
-				<span class="mui-tab-lable">通信录</span>
+				<div class="mui-tab-lable">通信录</div>
 			</a>
-			<a class="mui-tab-item" tabindex="2">
+			<a class="mui-tab-item" href="#" tabindex="2">
 				<span class="mui-icon mui-icon-paperplane"></span>
-				<span class="mui-tab-lable">发现</span>
+				<div class="mui-tab-lable">发现</div>
 			</a>
-			<a class="mui-tab-item" tabindex="3">
+			<a class="mui-tab-item" href="#" tabindex="3">
 				<span class="mui-icon mui-icon-person"></span>
-				<span class="mui-tab-lable">我</span>
+				<div class="mui-tab-lable">我</div>
 			</a>
 		</nav>
 		
@@ -88,7 +88,7 @@
 					
 					// 隐藏webview窗口
 					muxinPage.hide();
-234
+
 					// 追加每一个子页面到当前主页面
 					indexWebview.append(muxinPage);
 				}

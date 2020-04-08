@@ -18,6 +18,7 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -48,6 +49,9 @@ public class UserService  {
     @Autowired
     private ChatMsgMapper chatMsgMapper;
 
+    public User getUser(String id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
 
     // 1.查询所有用户信息
     public List<User> queryUsers() {
@@ -75,11 +79,14 @@ public class UserService  {
         user.setId(idWorker.nextId()+"");
         // 生成二维码
         // 1.设置图片路径
-        String qrCodePath = "D:\\example\\chatnetty\\muxin-chat\\src\\main\\resources\\static\\images\\"+user.getName()+"qrcode.png";
+        String basePath = ClassUtils.getDefaultClassLoader().getResource("static/images/").getPath();
+
+        String qrCodePath = basePath+user.getName()+"qrcode.png";
         // 2.生成二维码图片
         qrCodeUtil.createQRCode(qrCodePath,"chatCode:"+user.getName());
         // 3.将图片转为file文件类型
         user.setQrcode(user.getName()+"qrcode.png");
+        user.setFaceImg("my_face_default.png");
         userMapper.insert(user);
         return user;
     }
@@ -99,13 +106,17 @@ public class UserService  {
     // 5. 用户上传头像
     public User updateUser(MultipartFile file,String userId) throws Exception {
         User user = userMapper.selectByPrimaryKey(userId);
-        String path = "D:\\example\\chatnetty\\muxin-chat\\src\\main\\resources\\static\\images\\"+file.getOriginalFilename();
+        String basePath = ClassUtils.getDefaultClassLoader().getResource("static/images/").getPath();
+
+        String path = basePath+file.getOriginalFilename();
+
         File input = new File(path);
         file.transferTo(input);
         user.setFaceImg(file.getOriginalFilename());
         userMapper.updateByPrimaryKeySelective(user);
         return user;
     }
+
     // 6.更新用户昵称
     public User updateNickName(User user) {
         User result = userMapper.selectByPrimaryKey(user.getId());

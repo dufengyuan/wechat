@@ -1,11 +1,15 @@
 .title {
-	background-color: #c9394a;
+	/* background-color: #c9394a; */
 }
 
 .title-color {
-	color: white;
+	/* color: white; */
 }
 
 .mui-bar-tab .mui-tab-item.mui-active {
-	color: #c9394a;
+	/* color: #c9394a; */
+}
+.mui-tab-lable {
+	margin-top: 5px;
+	font-size: 12px;
 }

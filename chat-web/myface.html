@@ -13,8 +13,8 @@
 	<body>
 
 		<header class="mui-bar mui-bar-nav title">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
-			<a id="openMenu" class="mui-icon mui-icon-right-nav mui-pull-right" style="color: white;">…</a>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" ></a>
+			<a id="openMenu" class="mui-icon mui-icon-right-nav mui-pull-right" >…</a>
 			<h1 class="mui-title title-color">个人头像</h1>
 		</header>
 
@@ -47,7 +47,7 @@
 			mui.init()
 
 			mui.plusReady(function() {
-
+				var user = app.getUserGlobalInfo();
 				refreshFace();
 				
 				// 添加自定义事件，刷新头像
@@ -84,12 +84,14 @@
 					plus.nativeUI.showWaiting("下载中...");
 					
 					var user = app.getUserGlobalInfo();
-					var faceImage = user.faceImageBig;
+					var faceImage = user.faceImg;
 					
 					var dtast = plus.downloader.createDownload(
-						app.imgServerUrl + faceImage,
+						app.serverUrl + "/download?userId="+user.id,
 						{},
 						function(downloadFile, status) {
+							console.log(downloadFile)
+							console.log(status)
 							
 							plus.nativeUI.closeWaiting();
 							
@@ -118,9 +120,9 @@
 				var img_my_face = document.getElementById("img_myface");
 
 				if(user != null) {
-					var faceImage = user.faceImageBig;
+					var faceImage = user.faceImg;
 					if(app.isNotNull(faceImage)) {
-						img_my_face.src = app.imgServerUrl + faceImage;
+						img_my_face.src = app.serverUrl + "/images/"+faceImage;
 					}
 				}
 			}
